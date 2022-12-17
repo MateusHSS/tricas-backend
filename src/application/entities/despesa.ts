@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/Replace';
 import { Pessoa } from './pessoa';
 
-interface DespesaProps {
+export interface DespesaProps {
   titulo: string;
   valor: number;
   pessoas: Pessoa[];

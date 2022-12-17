@@ -7,4 +7,14 @@ export class DespesaRespositorioEmMemoria implements DespesasRespositorio {
   async create(despesa: Despesa) {
     this.despesas.push(despesa);
   }
+
+  async findById(despesaId: string): Promise<Despesa | null> {
+    const despesa = this.despesas.find((item) => item.id === despesaId);
+
+    if (!despesa) {
+      return null;
+    }
+
+    return despesa;
+  }
 }

@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { Despesa } from '../entities/despesa';
 import { Pessoa } from '../entities/pessoa';
 import { DespesasRespositorio } from '../repositories/despesas-repositorio';
@@ -12,6 +13,7 @@ interface CriaDespesaResponse {
   despesa: Despesa;
 }
 
+@Injectable()
 export class CriaDespesa {
   constructor(private despesasRepositorio: DespesasRespositorio) {}
 

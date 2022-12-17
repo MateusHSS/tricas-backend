@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers/Replace';
 
-interface PessoaProps {
+export interface PessoaProps {
   nome: string;
   chavePix?: string;
   createdAt: Date;

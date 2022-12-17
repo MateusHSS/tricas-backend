@@ -1,5 +1,5 @@
-import { DespesaRespositorioEmMemoria } from '../../../test/repositories/depesas-repositorio-em-memoria';
-import { Pessoa } from '../entities/pessoa';
+import { criaDespesaFactory } from '@test/factories/despesa-factory';
+import { DespesaRespositorioEmMemoria } from '@test/repositories/depesas-repositorio-em-memoria';
 import { CriaDespesa } from './cria-despesa';
 
 describe('Cria despesa', () => {
@@ -7,13 +7,7 @@ describe('Cria despesa', () => {
     const despesasRespositorioEmMemoria = new DespesaRespositorioEmMemoria();
     const criaDespesa = new CriaDespesa(despesasRespositorioEmMemoria);
 
-    const { despesa } = await criaDespesa.execute({
-      titulo: 'Despesa teste',
-      valor: 24.5,
-      pessoas: [
-        new Pessoa({ nome: 'Pessoa teste', chavePix: 'teste-chave-pix' }),
-      ],
-    });
+    const { despesa } = await criaDespesa.execute(criaDespesaFactory());
 
     expect(despesasRespositorioEmMemoria.despesas).toHaveLength(1);
     expect(despesasRespositorioEmMemoria.despesas[0]).toEqual(despesa);
@@ -24,11 +18,7 @@ describe('Cria despesa', () => {
     const criaDespesa = new CriaDespesa(despesasRespositorioEmMemoria);
 
     expect(() => {
-      return criaDespesa.execute({
-        titulo: 'Despesa teste',
-        valor: 24.5,
-        pessoas: [],
-      });
-    }).rejects.toThrow();
+      return criaDespesa.execute(criaDespesaFactory({ pessoas: [] }));
+    }).toThrow();
   });
 });

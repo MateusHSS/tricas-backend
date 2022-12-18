@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Despesa } from '../entities/despesa';
-import { Pessoa } from '../entities/pessoa';
-import { DespesasRespositorio } from '../repositories/despesas-repositorio';
+import { Despesa } from '@application/entities/despesa';
+import { Pessoa } from '@application/entities/pessoa';
+import { DespesasRespositorio } from '@application/repositories/despesas-repositorio';
 
 interface CriaDespesaRequest {
   titulo: string;

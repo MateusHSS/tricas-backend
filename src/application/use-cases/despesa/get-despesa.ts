@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Despesa } from '../entities/despesa';
-import { DespesasRespositorio } from '../repositories/despesas-repositorio';
+import { Despesa } from '@application/entities/despesa';
+import { DespesasRespositorio } from '@application/repositories/despesas-repositorio';
 
 interface GetDespesaRequest {
   despesaId: string;

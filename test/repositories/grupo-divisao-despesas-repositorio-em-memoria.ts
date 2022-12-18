@@ -23,4 +23,10 @@ export class GrupoDivisaoDespesasRepositorioEmMemoria
       (item) => item.id == grupoDivisaoDespesasId,
     ).participantes;
   }
+
+  async listaGruposPessoa(pessoaId: string): Promise<GrupoDivisaoDespesas[]> {
+    return this.gruposDivisaoDespesas.filter((item) => {
+      return item.participantes.map((item) => item.id).includes(pessoaId);
+    });
+  }
 }

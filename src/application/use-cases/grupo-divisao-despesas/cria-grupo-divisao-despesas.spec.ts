@@ -21,4 +21,18 @@ describe('Cria grupo de divisao de despesas', () => {
       grupoDivisaoDespesas,
     );
   });
+
+  it('deve retornar erro ao tentar criar um grupo de divisao de despesas sem nenhuma pessoas', async () => {
+    const grupoDivisaoDespesaRepositorio =
+      new GrupoDivisaoDespesasRepositorioEmMemoria();
+    const criaGrupoDivisaoDespesas = new CriaGrupoDivisaoDespesas(
+      grupoDivisaoDespesaRepositorio,
+    );
+
+    expect(() =>
+      criaGrupoDivisaoDespesas.execute(
+        criaGrupoDivisaoDespesaFactory({ participantes: [] }),
+      ),
+    ).toThrow();
+  });
 });

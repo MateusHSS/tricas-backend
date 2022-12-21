@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Expense } from '@application/entities/expense';
 import { ExpensesRepository } from '@application/repositories/expenses-repository';
+import { ExpenseNotFound } from './errors/ExpenseNotFound';
 
 interface GetExpenseRequest {
   expenseId: string;
@@ -12,15 +13,15 @@ interface GetExpenseResponse {
 
 @Injectable()
 export class GetExpense {
-  constructor(private despesasRepositorio: ExpensesRepository) {}
+  constructor(private expensesRepository: ExpensesRepository) {}
 
   async execute(request: GetExpenseRequest): Promise<GetExpenseResponse> {
     const { expenseId } = request;
 
-    const expense = await this.despesasRepositorio.findById(expenseId);
+    const expense = await this.expensesRepository.findById(expenseId);
 
     if (!expense) {
-      throw new Error('Despesa não encontrada');
+      throw new ExpenseNotFound();
     }
 
     return { expense };
